@@ -54,14 +54,17 @@ function createAuth({ pool, runtime, demoPin = '2580', sessionHours = 12, log = 
     return list;
   }
 
-  /** Create any demo person that is missing. Existing people (and their PINs) are left alone. */
+  /** Create any demo person that is missing. Existing people keep their PINs; names and roles follow the code. */
   async function ensureUsers() {
     const have = new Set((await pool.query('SELECT id FROM users')).rows.map((r) => r.id));
     let added = 0;
     for (const u of wantedUsers()) {
-      if (have.has(u.id)) continue;
+      if (have.has(u.id)) {   // keep their PIN, but follow name and role changes in the code (for example a renamed CEO)
+        await pool.query('UPDATE users SET name = $2, role = $3, owner_name = $4, title = $5, detail = $6 WHERE id = $1', [u.id, u.name, u.role, u.owner_name, u.title, u.detail]);
+        continue;
+      }
       const pin = await hashPin(demoPin);
-      await pool.query('INSERT INTO users (id, name, role, owner_name, title, detail, pin_hash) VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, role = EXCLUDED.role, owner_name = EXCLUDED.owner_name, title = EXCLUDED.title, detail = EXCLUDED.detail', [u.id, u.name, u.role, u.owner_name, u.title, u.detail, pin]);
+      await pool.query('INSERT INTO users (id, name, role, owner_name, title, detail, pin_hash) VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (id) DO NOTHING', [u.id, u.name, u.role, u.owner_name, u.title, u.detail, pin]);
       added++;
     }
     return added;
