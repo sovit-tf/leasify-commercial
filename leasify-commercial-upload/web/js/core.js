@@ -149,7 +149,7 @@ LC.TEAM = [
 ];
 LC.teamBy = (name) => LC.TEAM.find(t => t.name === name || t.id === name);
 /* ---------------- users, roles, access ---------------- */
-LC.CEO = { id: 'ceo', name: 'Sanjeev Das', role: 'CEO' };
+LC.CEO = { id: 'ceo', name: 'Pritish Gupta', role: 'CEO' };
 LC.ROLES = {
   ceo:       { label: 'CEO', views: '*' },
   manager:   { label: 'Leasing manager', views: ['dashboard', 'inbox', 'inventory', 'match', 'copilot', 'crm', 'visits', 'owners', 'ceo', 'analytics', 'team'] },
