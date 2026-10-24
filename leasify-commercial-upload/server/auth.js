@@ -61,7 +61,7 @@ function createAuth({ pool, runtime, demoPin = '2580', sessionHours = 12, log = 
     for (const u of wantedUsers()) {
       if (have.has(u.id)) continue;
       const pin = await hashPin(demoPin);
-      await pool.query('INSERT INTO users (id, name, role, owner_name, title, detail, pin_hash) VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (id) DO NOTHING', [u.id, u.name, u.role, u.owner_name, u.title, u.detail, pin]);
+      await pool.query('INSERT INTO users (id, name, role, owner_name, title, detail, pin_hash) VALUES ($1,$2,$3,$4,$5,$6,$7) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, role = EXCLUDED.role, owner_name = EXCLUDED.owner_name, title = EXCLUDED.title, detail = EXCLUDED.detail', [u.id, u.name, u.role, u.owner_name, u.title, u.detail, pin]);
       added++;
     }
     return added;
