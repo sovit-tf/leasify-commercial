@@ -1,0 +1,58 @@
+<div class="app">
+  <nav class="rail" aria-label="Modules">
+    <div class="brand"><div class="brand-mark">L</div><div class="brand-name">Leasify Commercial<span>Odisha leasing desk</span></div></div>
+    <div class="nav-group">Run the desk</div>
+    <div class="nav">
+      <a href="#dashboard" data-v="dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Dashboard</a>
+      <a href="#inbox" data-v="inbox"><svg viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg>Lead inbox<span class="k" id="nav-inbox"></span></a>
+      <a href="#inventory" data-v="inventory"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1M10 21v-3h4v3"/></svg>Inventory<span class="k" id="nav-inventory"></span></a>
+      <a href="#match" data-v="match"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5M8 11l2 2 4-4"/></svg>Requirement match</a>
+      <a href="#copilot" data-v="copilot"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Leasing co-pilot</a>
+    </div>
+    <div class="nav-group">Clients and owners</div>
+    <div class="nav">
+      <a href="#crm" data-v="crm"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>CRM<span class="k" id="nav-crm"></span></a>
+      <a href="#visits" data-v="visits"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15l2 2 4-4"/></svg>Site visits<span class="k" id="nav-visits"></span></a>
+      <a href="#owners" data-v="owners"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.8 2.6 2.6 3 5.2"/></svg>Owner portal</a>
+    </div>
+    <div class="nav-group">Numbers and setup</div>
+    <div class="nav">
+      <a href="#ceo" data-v="ceo"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-5h6v5"/><circle cx="12" cy="10" r="1.6"/></svg>CEO co-pilot</a>
+      <a href="#team" data-v="team"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Team report cards</a>
+      <a href="#analytics" data-v="analytics"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Analytics</a>
+      <a href="#settings" data-v="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Settings and rules</a>
+    </div>
+    <div class="rail-foot">
+      <div>Demo workspace. Every unit, lead, owner and company is invented sample data.</div>
+      <button type="button" id="btn-theme">Switch light / dark</button>
+      <button type="button" id="btn-reset">Reset demo data</button>
+    </div>
+  </nav>
+  <div class="main">
+    <header class="topbar">
+      <div class="tb-title"><h1 id="v-title">Dashboard</h1><div class="sub" id="v-sub"></div></div>
+      <div class="spacer"></div>
+      <span class="pill" id="sim-pill" hidden><span class="dot"></span><span id="sim-pill-t"></span></span>
+      <span class="pill demo"><span class="dot"></span>Sample data</span>
+      <button type="button" class="user-chip" id="user-chip" aria-haspopup="true"></button>
+      <span class="pill" id="today-pill"></span>
+    </header>
+    <main class="content" id="content">
+      <section class="view" id="v-dashboard"></section>
+      <section class="view" id="v-inbox" hidden></section>
+      <section class="view" id="v-inventory" hidden></section>
+      <section class="view" id="v-match" hidden></section>
+      <section class="view" id="v-copilot" hidden></section>
+      <section class="view" id="v-crm" hidden></section>
+      <section class="view" id="v-visits" hidden></section>
+      <section class="view" id="v-owners" hidden></section>
+      <section class="view" id="v-ceo" hidden></section>
+      <section class="view" id="v-team" hidden></section>
+      <section class="view" id="v-analytics" hidden></section>
+      <section class="view" id="v-settings" hidden></section>
+    </main>
+  </div>
+</div>
+<div id="login-root"></div>
+<div id="drawer-root"></div>
+<div id="toast-root" aria-live="polite"></div>

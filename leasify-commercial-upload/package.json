@@ -1,0 +1,24 @@
+{
+  "name": "leasify-commercial",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Leasify Commercial v1 server: one engine on the server, Postgres, live updates to every browser.",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "build": "python3 web/build.py --server",
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "test:e2e": "python3 tests/e2e_smoke.py"
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "pg": "^8.13.1",
+    "sharp": "^0.33.5"
+  }
+}

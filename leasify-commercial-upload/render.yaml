@@ -1,0 +1,41 @@
+# Render Blueprint: one always-on web service (Docker) and one Postgres database, Singapore region.
+# In Render: New > Blueprint > pick this repo > Apply. Leave the AI_* and WA_* boxes empty if you don't have them yet.
+services:
+  - type: web
+    name: leasify-commercial
+    runtime: docker
+    plan: starter            # always on; the free plan sleeps and would drop WhatsApp replies
+    region: singapore
+    numInstances: 1          # the engine lives in memory: run exactly one instance
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: leasify-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Asia/Kolkata
+      - key: DEMO_PIN
+        value: "2580"
+      - key: AI_BASE_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        sync: false
+      - key: WA_TOKEN
+        sync: false
+      - key: WA_PHONE_NUMBER_ID
+        sync: false
+      - key: WA_APP_SECRET
+        sync: false
+      - key: WA_VERIFY_TOKEN
+        generateValue: true
+databases:
+  - name: leasify-db
+    plan: basic-256mb
+    region: singapore
+    databaseName: leasify
+    user: leasify
